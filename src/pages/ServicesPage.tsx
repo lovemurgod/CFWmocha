@@ -2,6 +2,16 @@ import { motion } from 'framer-motion';
 import SectionHeading from '../components/SectionHeading';
 import Button from '../components/Button';
 
+// Icon mapping for semantic icon prop values
+const iconMap: Record<string, string> = {
+  runway: 'https://cdn-icons-png.flaticon.com/512/803/803948.png',
+  camera: 'https://cdn-icons-png.flaticon.com/512/482/482406.png',
+  mic: 'https://cdn-icons-png.flaticon.com/512/709/709496.png',
+  workshop: 'https://cdn-icons-png.flaticon.com/512/3176/3176296.png',
+  event: 'https://cdn-icons-png.flaticon.com/512/1256/1256650.png',
+  strategy: 'https://cdn-icons-png.flaticon.com/512/2910/2910791.png',
+};
+
 export default function ServicesPage() {
   return (
     <div className="min-h-screen pt-20">
@@ -163,6 +173,9 @@ interface ServiceCardProps {
 }
 
 function ServiceCard({ title, description, icon, image }: ServiceCardProps) {
+  // Map icon keyword to actual icon URL
+  const iconUrl = iconMap[icon];
+
   return (
     <motion.div 
       className="bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
@@ -175,6 +188,13 @@ function ServiceCard({ title, description, icon, image }: ServiceCardProps) {
       <div className="h-52 relative overflow-hidden">
         <img src={image} alt={title} className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#1A2A40]/80 to-transparent"></div>
+        {iconUrl && (
+          <img 
+            src={iconUrl}
+            alt={`${title} icon`}
+            className="absolute top-4 left-4 w-10 h-10 bg-white rounded-full p-2 shadow-lg z-10"
+          />
+        )}
       </div>
       
       <div className="p-6">

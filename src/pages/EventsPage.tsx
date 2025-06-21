@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import SectionHeading from '../components/SectionHeading';
 import EventCard from '../components/EventCard';
 import Button from '../components/Button';
 
@@ -108,17 +107,17 @@ const categories = [
 
 export default function EventsPage() {
   const [activeCategory, setActiveCategory] = useState("all");
-  
-  const filteredEvents = activeCategory === "all" 
-    ? eventsData 
+
+  const filteredEvents = activeCategory === "all"
+    ? eventsData
     : eventsData.filter(event => event.category === activeCategory);
-  
+
   return (
     <div className="min-h-screen pt-20">
       {/* Page Header */}
       <div className="bg-[#1A2A40] py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
-          <motion.div 
+          <motion.div
             className="max-w-3xl"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -134,7 +133,7 @@ export default function EventsPage() {
           </motion.div>
         </div>
       </div>
-      
+
       {/* Events Section */}
       <section className="py-16 bg-white/90 backdrop-blur-md">
         <div className="container mx-auto px-4 md:px-6">
@@ -156,7 +155,7 @@ export default function EventsPage() {
               ))}
             </div>
           </div>
-          
+
           {/* Events Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredEvents.map(event => (
@@ -172,7 +171,7 @@ export default function EventsPage() {
               </Link>
             ))}
           </div>
-          
+
           {/* Empty State */}
           {filteredEvents.length === 0 && (
             <div className="text-center py-12">
@@ -180,8 +179,8 @@ export default function EventsPage() {
               <p className="text-gray-600 mb-6">
                 No events were found for the selected category. Please try another filter.
               </p>
-              <Button 
-                variant="secondary" 
+              <Button
+                variant="secondary"
                 onClick={() => setActiveCategory("all")}
               >
                 View All Events
@@ -190,7 +189,7 @@ export default function EventsPage() {
           )}
         </div>
       </section>
-      
+
       {/* Download Schedule CTA */}
       <section className="py-16 bg-[#F4F4F4]/90 backdrop-blur-md">
         <div className="container mx-auto px-4 md:px-6">
